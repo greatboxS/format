@@ -14,7 +14,7 @@ usage() {
 }
 
 
-while getopts "lmdh" opt; do
+while getopts "lmd:h" opt; do
     case $opt in
     l)
         CLANG_FORMAT=0
@@ -46,7 +46,7 @@ if [ $CLANG_FORMAT = 1 ]; then
     echo "-----------------------------------------------------------------------------"
     echo "                            Formating source code"
     echo "-----------------------------------------------------------------------------"
-    find ${FORMAT_DID} -type f -regex '.*\.\(cpp\|hpp\|h\|cc\|cxx\|c\)' ! -regex '.*build.*' ! -regex '.*out.*' -exec clang-format -style=file -i --verbose {} \;
+    find ${FORMAT_DIR} -type f -regex '.*\.\(cpp\|hpp\|h\|cc\|cxx\|c\)' ! -regex '.*build.*' ! -regex '.*out.*' -exec clang-format -style=file -i --verbose {} \;
     echo ""
 fi
 
@@ -62,6 +62,6 @@ if [ $CMAKE_FORMAT = 1 ]; then
     echo "-----------------------------------------------------------------------------"
     echo "                            Formating cmake code"
     echo "-----------------------------------------------------------------------------"
-    find ${FORMAT_DID} -type f -regex '.*CMakeLists.txt' ! -regex '.*build.*' ! -regex '.*out.*' -exec sh -c 'cmake-format -o {} {} ; echo Formatting [1/1] {} ' \; 
+    find ${FORMAT_DIR} -type f -regex '.*CMakeLists.txt' ! -regex '.*build.*' ! -regex '.*out.*' -exec sh -c 'cmake-format -o {} {} ; echo Formatting [1/1] {} ' \; 
     echo ""
 fi
