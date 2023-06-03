@@ -14,7 +14,7 @@ usage() {
 }
 
 
-while getopts "lmh" opt; do
+while getopts "lmdh" opt; do
     case $opt in
     l)
         CLANG_FORMAT=0
